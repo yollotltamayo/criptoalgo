@@ -1,10 +1,6 @@
 import Clock from '../components/clock'
 import  MuiContainer  from '@material-ui/core/Container'
-import MuiAccordion from '@material-ui/core/Accordion'
-import AccordionSummary from '@material-ui/core/AccordionSummary'
-import AccordionDetails from '@material-ui/core/AccordionDetails'
 import Typography from '@material-ui/core/Typography'
-import ExpandMoreIcon from '@material-ui/icons/ExpandMore'
 import MuiPaper from '@material-ui/core/Paper'
 import { withStyles } from '@material-ui/core/styles'
 import style from '../styles/Cesar.module.css'
@@ -16,17 +12,6 @@ import hljs from 'highlight.js';
 import python from 'highlight.js/lib/languages/python';
 hljs.registerLanguage('python', python);
 const Container = MuiContainer
-const Accordion = withStyles({
-  root: {
-      position:'none',
-      borderTop: '0px',
-      borderRadius :'5px',
-    '&:not(:last-child)': {
-      borderBottom: 0,
-    }
-  },
-  expanded: {},
-})(MuiAccordion)
 const Paper = withStyles({
     root:{
         padding: '15px',
@@ -91,7 +76,6 @@ const Cesar = () => {
     };
 
     const detBase = (base : string ,callback: any) => {
-        console.log(base)
         if(abc.get(base)) {
             callback(abc.get(base))
             return abc.get(base)
@@ -105,7 +89,7 @@ const Cesar = () => {
         return base
     }
     useEffect(() => {
-        hljs.initHighlighting();
+        hljs.highlightAll();
     }, []);
 
     const [base , setBase] = useState<number | 0 > (0)
@@ -171,7 +155,6 @@ const Cesar = () => {
                     <Tab label="Python"  />
                     <Tab label="C++"  />
                 </Tabs>
-                <Typography>
                     <pre>
                         <code style={{borderRadius :'4px'}} className="python">
                         { `class Cesar:
@@ -200,7 +183,6 @@ const Cesar = () => {
         return encript`}
 
                     </code></pre>
-                </Typography>
             </Paper> <h1 style={{
                 fontSize:'calc(1em + 2vw)',
                 padding:'0',
