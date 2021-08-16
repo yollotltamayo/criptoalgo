@@ -162,7 +162,6 @@ const Cesar = () => {
                     onChange={handleChange}
                 >
                     <Tab label="Python"  />
-                    <Tab label="C++"  />
                 </Tabs>
                     <pre>
                         <code style={{borderRadius :'4px'}} className="python">
