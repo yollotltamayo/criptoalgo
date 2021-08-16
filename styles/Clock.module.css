@@ -1,0 +1,38 @@
+.reloj1 {
+  font: 26px Monaco, MonoSpace;
+  height: 200px;
+  position: absolute;
+  left: 49.2%;
+  transform-origin: bottom center;
+  border-radius:5px;
+  cursor:pointer;
+}
+.reloj2 {
+  font: 26px Monaco, MonoSpace;
+  height: 150px;
+  position:absolute;
+  transform-origin: bottom center;
+  border-radius:5px;
+  cursor:pointer;
+  z-index:3;
+  color:white;
+  margin-top:50px;
+}
+.reloj_afuera {
+    left:34.5%;
+    background:#6a6a6a;
+    top:49.2%;
+    height:400px;
+    width:400px;
+    box-shadow:inset 0 0 0 50px #a4a4a4;
+    border-radius:50%;
+    margin:1px;
+}
+
+.letras {
+    display:flex;
+    flex-direction:row;
+    justify-content:space-around;
+    padding:10px 0;
+}
+
