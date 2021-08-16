@@ -1,16 +1,22 @@
-import Clock from '../components/clock'
 import  MuiContainer  from '@material-ui/core/Container'
 import Typography from '@material-ui/core/Typography'
 import MuiPaper from '@material-ui/core/Paper'
 import { withStyles } from '@material-ui/core/styles'
 import style from '../styles/Cesar.module.css'
-import MuiTextField from '@material-ui/core/TextField'
 import {useState, useEffect} from 'react'
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
-import hljs from 'highlight.js';
-import python from 'highlight.js/lib/languages/python';
-hljs.registerLanguage('python', python);
+//import ljs from 'highlight.js';
+//import python from 'highlight.js/lib/languages/python';
+import dynamic from 'next/dynamic'
+//import 'katex/dist/katex.min.css'
+
+//hljs.registerLanguage('python', python);
+import hljs from './high'
+
+const Latex = dynamic( () => import('react-latex-next'))
+const Clock = dynamic( () => import('../components/clock'))
+const MuiTextField = dynamic( () => import('@material-ui/core/TextField'))
 const Container = MuiContainer
 const Paper = withStyles({
     root:{
@@ -38,23 +44,24 @@ interface Cadena {
     normal     :string
 }
 //const chr = (car : string) =>  c
-var Latex = require('react-latex')
 const reduce = (cadena : string) =>  new Map<string, number> (cadena.split('').map((val, idx) => [val, idx ])) 
 const abc = reduce("abcdefghijklmnopqrstuvwxyz") , ABC = reduce("ABCDEFGHIJKLMNOPQRSTUVWXYZ")
 const encripta = (cadena:string, callback:any, base:number) => {
     let normal:string  = cadena
     base = +base | 0
     let mod = abc.size
-    let encriptada:string = normal.split('').map( (val:string ) => {
+    let encriptada:(string |undefined) = normal.split('').map( (val:string ) => {
+        let upper :number | undefined = ABC.get(val) ?? 0
+        let lower :number | undefined = abc.get(val) ?? 0
         if( (/[a-z]/).test(val)) {
             if(base < 0)
-                return String.fromCharCode(((((abc.get(val)  | 0 )+ base)%mod) +mod)%mod+  'a'.charCodeAt(0))
-            return String.fromCharCode(((abc.get(val)  | 0 )+ base)%mod + 'a'.charCodeAt(0))
+                return String.fromCharCode(((lower + base)%mod +mod)%mod+  'a'.charCodeAt(0))
+            return String.fromCharCode((lower + base)%mod + 'a'.charCodeAt(0))
         }
         if( (/[A-Z]/).test(val)) {
             if(base < 0)
-                return String.fromCharCode(((((ABC.get(val)  | 0 )+ base)%mod) +mod)%mod+  'A'.charCodeAt(0))
-            return String.fromCharCode(( (ABC.get(val)  | 0 )+ base)%ABC.size + 'A'.charCodeAt(0))
+                return String.fromCharCode(((((upper)+ base)%mod) +mod)%mod+  'A'.charCodeAt(0))
+            return String.fromCharCode(( (upper)+ base)%ABC.size + 'A'.charCodeAt(0))
         }
         return val
     }).join('')
@@ -65,7 +72,7 @@ const encripta = (cadena:string, callback:any, base:number) => {
 }
 const Cesar = () => {
     const [cadena, setCadena ] = useState<Cadena | undefined > ({
-        cadena:'',
+        encriptada:'',
         normal:''
     })
     const [value, setValue] = useState< string > ('python')
@@ -84,12 +91,12 @@ const Cesar = () => {
             callback(ABC.get(base))
             return ABC.get(base)
         }
-        base =  +base | 0
-        callback(base)
-        return base
+        let newBase :number=  +base | 0
+        callback(newBase)
+        return newBase
     }
     useEffect(() => {
-        hljs.highlightAll();
+        (hljs as any).highlightAll();
     }, []);
 
     const [base , setBase] = useState<number | 0 > (0)
@@ -127,7 +134,9 @@ const Cesar = () => {
                        <Clock abc={abc} cadena={cadena?.normal} setCadena={setCadena} encripta={encripta}/>
 
                 <TextField id="base" onChange={(e) => {
-                    encripta(cadena?.normal,setCadena, detBase(e.target.value, setBase))
+                    let newCadena :string = cadena?.normal ?? ''
+                    let newBase :number  = detBase(e.target.value, setBase) ?? 0
+                    encripta(newCadena,setCadena, newBase)
                     } } label="Base" type="text" variant="filled" />
                 <div className={style.inputs}>
                     <TextField id="cadena" onChange={(e) => encripta(e.target.value,setCadena,base)} rows={4} label="Cadena"  variant="filled" multiline/>
@@ -200,7 +209,7 @@ const Cesar = () => {
                     </ul>
                 </OutlinedPaper>
                 Si aplicamos la formula de modulo para la resta:
-                <Latex displayMode={true}>$((a - b) \% MOD + MOD) \% MOD$</Latex>
+                <Latex >$((a - b) \% MOD + MOD) \% MOD$</Latex>
                 Entonces resulta que  retrocedemos  las letras una posición atrás sin salir del abecedario.
                 <OutlinedPaper variant="outlined">
                     <ul  className={style.listas}>
@@ -209,10 +218,10 @@ const Cesar = () => {
                         </Typography>
                     </ul>
                 </OutlinedPaper>
-                <Latex displayMode={true}>$A \implies K , B \implies  L, C \implies M \dots Z \implies J$</Latex>
+                <Latex >$A \implies K , B \implies  L, C \implies M \dots Z \implies J$</Latex>
                 Entonces :
                 
-                <Latex displayMode={true}>$ YA \ LLEGARON  \ LAS \ PIZZAS \implies IK  \ VVOQKBYX \ VKC  \ ZSJJKC$</Latex>
+                <Latex >$ YA \ LLEGARON  \ LAS \ PIZZAS \implies IK  \ VVOQKBYX \ VKC  \ ZSJJKC$</Latex>
                 <OutlinedPaper variant="outlined">
                     <ul  className={style.listas}>
                         <Typography>
@@ -228,8 +237,8 @@ const Cesar = () => {
                         </Typography>
                     </ul>
                 </OutlinedPaper>
-                <Latex displayMode={true}>$ENCRIPTA(x) = (x + BASE)\%n$</Latex>
-                <Latex displayMode={true}>$DESENCRIPTA(x) = (x - BASE)\%n$</Latex>
+                <Latex >$ENCRIPTA(x) = (x + BASE)\%n$</Latex>
+                <Latex >$DESENCRIPTA(x) = (x - BASE)\%n$</Latex>
                 <OutlinedPaper variant="outlined">
                     <ul  className={style.listas}>
                         <Typography>

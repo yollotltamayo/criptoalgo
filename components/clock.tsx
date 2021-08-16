@@ -1,7 +1,7 @@
 import {useState ,useEffect,cloneElement} from 'react'
 import style from '../styles/Clock.module.css'
 //const Clock = (props:{cadena:string, setCadena:any, encripta:any, abc:any}) => {
-const Clock = (props) => {
+const Clock = (props:any) => {
     let {cadena, setCadena, encripta, abc } = props
     const ABC='abcdefghijklmnopqrstuvwxyz'.split(''),
           STEP = 360/ABC.length
@@ -18,7 +18,7 @@ const Clock = (props) => {
     }
     const [reloj1 , setReloj1] = useState(generateLetter(style.reloj1,1))
     const [reloj2 , setReloj2] = useState(generateLetter(style.reloj2,2))
-    const ruedaCirculo = (e) => {
+    const ruedaCirculo = (e:any) => {
         let arr :any= [], min = Number.MAX_SAFE_INTEGER, pos = 0, mv
         deg = 0 
         reloj2.forEach( (val,idx) => {
