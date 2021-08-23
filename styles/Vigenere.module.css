@@ -1,0 +1,46 @@
+.grid {
+        display: grid;
+    grid-template-columns: repeat(28, 1fr);
+    grid-template-rows: repeat(28, 1fr);
+    grid-column-gap: 0px;
+    grid-row-gap: 0px;
+    justify-content:center;
+    text-align:center;
+}
+.t1 {
+    grid-area: 2 / 1 / span 27 / span 1;
+    text-align:center;
+    writing-mode:vertical-lr;
+    background-color: rgba(255,255,255,0.3);
+    display:flex;
+    justify-content:center;
+    text-orientation:upright;
+    align-items:center;
+}
+.t2 {
+    display:flex;
+    text-align:center;
+    grid-area: 1 / 2 / span 1 / span 27;
+    background-color: rgba(255,255,255,0.3);
+    justify-content:center;
+    align-items:center;
+}
+.t1, .t2 {
+    border-radius:5px;
+    background-color:transparent;
+}
+.t2t {
+    background-color:transparent;
+}
+.t1t {
+    background-color:transparent;
+}
+.celda{
+    border: 1px solid gray;
+}
+.llaves {
+    display:flex;
+    flex-direction:row;
+    align-items:center;
+    justify-content:space-between;
+}

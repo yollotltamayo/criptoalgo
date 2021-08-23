@@ -5,3 +5,21 @@
 .listas li::before{
    content:'👉 '
 }
+.katex-html {
+    display:none;
+}
+ul {
+    list-style:none;
+    padding-left:10px;
+}
+ li::before{
+   content:'👉  ';
+}
+.inputs {
+    display:flex;
+    flex-direction:row;
+    justify-content:space-around;
+}
+.inputs:nth-child(n) {
+    padding:5px;
+}

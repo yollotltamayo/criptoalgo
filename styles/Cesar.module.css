@@ -10,3 +10,7 @@
     flex-direction:row;
     justify-content:space-around;
 }
+.block {
+    padding:10px 10px;
+    text-align:center;
+}
