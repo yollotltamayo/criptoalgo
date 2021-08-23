@@ -76,7 +76,7 @@ const Cesar = () => {
         normal:''
     })
     const [value, setValue] = useState< string > ('python')
-    const [tab, setTab] = useState<number>(1);
+    const [tab, setTab] = useState<number>(0);
 
     const handleChange = (event: React.ChangeEvent<{}>, newValue: number) => {
         setTab(newValue);
@@ -208,7 +208,9 @@ const Cesar = () => {
                     </ul>
                 </OutlinedPaper>
                 Si aplicamos la formula de modulo para la resta:
-                <Latex >$((a - b) \% MOD + MOD) \% MOD$</Latex>
+                <div className={style.block}>
+                    <Latex >$((a - b) \% MOD + MOD) \% MOD$</Latex>
+                </div>
                 Entonces resulta que  retrocedemos  las letras una posición atrás sin salir del abecedario.
                 <OutlinedPaper variant="outlined">
                     <ul  className={style.listas}>
@@ -217,10 +219,13 @@ const Cesar = () => {
                         </Typography>
                     </ul>
                 </OutlinedPaper>
+                <div className={style.block}>
                 <Latex >$A \implies K , B \implies  L, C \implies M \dots Z \implies J$</Latex>
+                </div> 
                 Entonces :
-                
+                <div className={style.block}>
                 <Latex >$ YA \ LLEGARON  \ LAS \ PIZZAS \implies IK  \ VVOQKBYX \ VKC  \ ZSJJKC$</Latex>
+                </div>
                 <OutlinedPaper variant="outlined">
                     <ul  className={style.listas}>
                         <Typography>
@@ -236,8 +241,12 @@ const Cesar = () => {
                         </Typography>
                     </ul>
                 </OutlinedPaper>
+                <div className={style.block}>
                 <Latex >$ENCRIPTA(x) = (x + BASE)\%n$</Latex>
+                </div>
+                <div className={style.block}>
                 <Latex >$DESENCRIPTA(x) = (x - BASE)\%n$</Latex>
+                </div>
                 <OutlinedPaper variant="outlined">
                     <ul  className={style.listas}>
                         <Typography>
