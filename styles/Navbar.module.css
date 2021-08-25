@@ -1,0 +1,35 @@
+.barra {
+    background-color:#333333;
+    background-color:#424242;
+    box-shadow: 0px 3px 3px -2px rgba(0,0,0,0.2),0px 3px 4px 0px rgba(0,0,0,0.14),0px 1px 8px 0px rgba(0,0,0,0.12);
+    display:flex;
+    padding:10px;
+    width:100%;
+    position:sticky;
+    top:0%;
+    justify-content:center;
+    z-index:4000;
+}
+.elements {
+    width:100%;
+    display:flex;
+    justify-content:flex-end;
+    align-content:space-around;
+    max-width:960px;
+   padding:0 15px; 
+}
+.elements :first-child{
+    margin-right:auto;
+}
+.element { 
+   padding:0 10px; 
+   cursor:pointer;
+    padding: 5px;
+    transition: all 3s;
+}
+.element :hover {
+   background-color:white; 
+    background-color:#424242;
+    box-shadow: 0px 3px 3px -2px rgba(0,0,0,0.2),0px 3px 4px 0px rgba(0,0,0,0.14),0px 1px 8px 0px rgba(0,0,0,0.12);
+
+}

@@ -1,11 +1,9 @@
 .container {
-  min-height: 100vh;
   padding: 0 0.5rem;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: 100vh;
 }
 
 .main {
@@ -15,6 +13,15 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+
+}
+.main {
+   /*font-size:15vw; */
+}
+.letras > span{
+   font-size:min(12vw,calc(960px/12 + 1vw));
+   padding:0;
+   margin:0;
 }
 
 .footer {
