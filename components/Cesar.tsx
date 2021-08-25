@@ -9,12 +9,12 @@ import Tab from '@material-ui/core/Tab';
 //import ljs from 'highlight.js';
 //import python from 'highlight.js/lib/languages/python';
 import dynamic from 'next/dynamic'
-//import 'katex/dist/katex.min.css'
-
+//import '../styles/katex.module.css'
 //hljs.registerLanguage('python', python);
 import hljs from './high'
 
-const Latex = dynamic( () => import('react-latex-next'))
+const Latex = dynamic( () => import('react-latex'))
+
 const Clock = dynamic( () => import('../components/clock'))
 const MuiTextField = dynamic( () => import('@material-ui/core/TextField'))
 const Container = MuiContainer
