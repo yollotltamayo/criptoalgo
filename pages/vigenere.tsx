@@ -149,8 +149,9 @@ El cifrado Vigenère se ha reinventado muchas veces. El método original fue des
             <Paper >
                 <OutlinedPaper variant="outlined">
                     <ul  >
-                        <li>Puedes ingresar una base(números , letras )  o prueba moviendo la perilla.</li>
-                        <li>Ingresa la cadena para encriptar .</li>
+                        <li>Ingresa la llave (por ahora solo funciona con minúsculas)</li>
+                        <li>Ingresa el texto a {encriptar ? 'encriptar':'desencriptar'} (por ahora solo funciona con minúsculas)</li>
+                        <li> Cambia el switch para encriptar o desencriptar</li>
                     </ul>
                 </OutlinedPaper>
                 <h2>Ingresa tu llave</h2>
@@ -159,7 +160,6 @@ El cifrado Vigenère se ha reinventado muchas veces. El método original fue des
                         checked={encriptar}
                         onChange={() => {
                         setEncriptar(!encriptar)
-                            console.log(encriptar)
                         }}
                         name="checkedA" />}
                     label={encriptar ? "Encriptar" : "Desencriptar"}

@@ -54,10 +54,12 @@ const Luhn = () => {
     const [celda , setCelda] = useState<string  | ''>('0 0')
     const [encriptar, setEncriptar] = useState<boolean  | false>(false)
     const luhn = (input:string) => {
-        if(input.length > 20  || input.length <  4){
-            return <div className={styles.banner}>El número debe tener entre 9 y 15 digitos</div>
+        if(!/^\d+$/.test(input)){
+            return <div className={styles.banner}>Recuerda que es un número, no puede contener otra cosa diferente a digitos.</div>
         }
-        if(!/^\d+$/.test(input))return
+        if(input.length > 20  || input.length <  4){
+            return <div className={styles.banner}>El número debe tener entre 4 y 20 digitos.</div>
+        }
         let styleGrid = {
             display: 'grid',
             gridTemplateColumns : `repeat(${input.length}, 1fr)`,
@@ -138,14 +140,14 @@ const Luhn = () => {
             <Paper >
                 <OutlinedPaper variant="outlined">
                     <ul  >
-                        <li>Puedes ingresar una número o generarlo aleatoriamente.</li>
-                        <li> Da click en validar para verificar si es un número valido de tarjeta de credito</li>
+                        <li>Puedes ingresar un número. </li>
+                        <li> Puedes observar el procedimiento para ver si es un número valido o no.</li>
                     </ul>
                 </OutlinedPaper>
                 <h2>Número</h2>
 
                 <div className={"inputs"}>
-                    <TextField onChange={(e) => { setNumero(e.target.value)}} label ={encriptar ? "texto plano":"texto encriptado"}/>
+                    <TextField onChange={(e) => { setNumero(e.target.value)}} label ={encriptar ? "Texto plano":"Texto encriptado"}/>
                 </div>
                 {
                     luhn(numero)
