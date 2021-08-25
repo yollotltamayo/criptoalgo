@@ -3,6 +3,7 @@ import React from 'react'
 import type { AppProps } from 'next/app'
 import { ThemeProvider ,createTheme } from '@material-ui/core/styles'
 import CssBaseline from '@material-ui/core/CssBaseline'
+import Navbar from '../components/navbar'
 function MyApp({ Component, pageProps }: AppProps) {
     const theme = createTheme({
         palette: {
@@ -19,6 +20,7 @@ function MyApp({ Component, pageProps }: AppProps) {
   return (
       <ThemeProvider theme={theme}>
           <CssBaseline />
+          <Navbar/>
           <Component {...pageProps} />
       </ThemeProvider>
   )

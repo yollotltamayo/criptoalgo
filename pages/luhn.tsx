@@ -170,8 +170,7 @@ const Luhn = () => {
                 </Tabs>
                     <pre>
                         <code style={{borderRadius :'4px'}} className="python">
-                        { 
-                            `class Luhn:
+                        { `class Luhn:
     def esValido(self, numero:str):
         ar = lambda ar : map(int, ar)
         return (sum((i<<1)//10 + (i<<1)%10 for i in ar(numero[1::2]))  + sum(ar(numero[0::2]))) % 10 == 0`
